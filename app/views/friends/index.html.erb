@@ -1,14 +1,53 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Friends</h1>
+<br/>
 
 <div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-    <p>
-      <%= link_to "Show this friend", friend %>
-    </p>
-  <% end %>
-</div>
+  <table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Twitter</th>
+    </tr>
+  </thead>
 
-<%= link_to "New friend", new_friend_path %>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td>
+          <%= friend.first_name%>
+        </td>
+        <td>
+          <%= friend.last_name%>
+        </td>
+        <td>
+          <%= friend.email%>
+        </td>
+        <td>
+          <%= friend.phone%>
+        </td>
+        <td>
+          <%= friend.twitter%>
+        </td>
+        <td>
+          <%= link_to 'Show', friend, class: 'btn btn-outline-info' %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_friend_path(friend), class: 'btn btn-outline-warning'%>
+        </td>
+        <td>
+          <%= button_to "Delete", friend, method: :delete, class: 'btn btn-outline-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
+<br/>
+
+<%= link_to "New Friend", new_friend_path, class: 'btn btn-primary'%>
